@@ -12,7 +12,7 @@
 - Пересобрать pom-файл (maven);
 - Запустить проект:
     - через NaukaApplication.class для тестирования в Postman;
-    - через DemoNaukaApplication.class для выполнения демонстрации работы методов в консоли IntelliJ IDEA.
+    - через DemoNaukaApplication.class для выполнения демонстрации работы методов в консоли IntelliJ IDEA, после запуска приложения через этот класс, можно запустить тесты в Postman.
 
 ### Для тестирования подготовлен файл коллекции Postman
 [Nauka_Tests.postman_collection.json](https://github.com/avan-es/nauka/blob/master/postman/Nauka_Tests.postman_collection.json)
