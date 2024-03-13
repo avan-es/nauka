@@ -27,12 +27,12 @@ public class DemoNaukaApplication {
             System.out.println( e.getMessage() + "\n");
         }
 
-        System.out.println("Демонстрация работы findBetween(from, to) с from < to (from= 1990-01-01, to = 1992-12-31):");
+        System.out.println("Демонстрация работы findBetween(from, to) с from < to (from = 1990-01-01, to = 1992-12-31):");
         List<EmployeeFullPojo> result = service.findBetween(LocalDate.of(1990,1,1), LocalDate.of(1992, 12, 31));
         printEmployee(result);
 
-        System.out.println("Демонстрация работы findBetween(from, to) с from > to (from = 1992-01-01, to = 1990-12-31):");
-        result = service.findBetween(LocalDate.of(1992, 1,1), LocalDate.of(1990, 12, 31));
+        System.out.println("Демонстрация работы findBetween(from, to) с from > to (from = 1992-12-31, to = 1990-01-01):");
+        result = service.findBetween(LocalDate.of(1992, 12,31), LocalDate.of(1990, 1, 1));
         printEmployee(result);
 
         System.out.println("Демонстрация работы findBetween(from, to) с from = to = 1992-02-21:");
