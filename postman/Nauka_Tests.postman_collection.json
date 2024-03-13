@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "4492cf9e-ef3d-4f79-9a0c-8542ef68342b",
+		"name": "Nauka Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26075604"
+	},
+	"item": [
+		{
+			"name": "findById 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Тест employee 'id' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('id');\r",
+							"    pm.expect(jsonData.id, '\"id\" =1').to.eql(1);\r",
+							"});\r",
+							"pm.test(\"Тест employee 'firstName' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('firstName');\r",
+							"    pm.expect(jsonData.firstName, '\"firstName\" = Владлен').to.eql('Владлен');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'lastName' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('lastName');\r",
+							"    pm.expect(jsonData.lastName, '\"lastName\" = Адамов').to.eql('Адамов');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'birthday' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('birthday');\r",
+							"    pm.expect(jsonData.birthday, '\"birthday\" = 1986-04-16').to.eql('1986-04-16');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'department' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('department');\r",
+							"    pm.expect(jsonData.department, '\"department\" = Отдел автоматизации').to.eql('Отдел автоматизации');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'salary' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('salary');\r",
+							"    pm.expect(jsonData.salary, '\"salary\" = 62000').to.eql(62000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById 1000 ERROR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 404\", function () {\r",
+							"    pm.response.to.be.notFound;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Тест employee ERROR 'status' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('status');\r",
+							"    pm.expect(jsonData.status, '\"status\" = NOT_FOUND').to.eql('NOT_FOUND');\r",
+							"});\r",
+							"pm.test(\"Тест employee ERROR 'reason' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reason');\r",
+							"    pm.expect(jsonData.reason, '\"reason\" = Объект не найден.').to.eql('Объект не найден.');\r",
+							"});\r",
+							"pm.test(\"Тест employee ERROR 'message' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"message\" = Сотрудник с ID 1000 не найден.').to.eql('Сотрудник с ID 1000 не найден.');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groupByName size = 69",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Количество имён groupByName\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length, 'Количество имён groupByName = 69').to.eql(69);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/groupByName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"groupByName"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findBetween from < to (from = 1990-01-01, to = 1992-12-31)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Количество сотрудников findBetween from < to (from = 1990-01-01, to = 1992-12-31)\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length, 'Количество сотрудников findBetween = 14').to.eql(14);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/findBetween?from=1990-01-01&to=1992-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"findBetween"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1990-01-01"
+						},
+						{
+							"key": "to",
+							"value": "1992-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findBetween from > to (from = 1992-12-31, to = 1990-01-01)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Количество сотрудников findBetween from < to (from = 1990-01-01, to = 1992-12-31)\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length, 'Количество сотрудников findBetween = 14').to.eql(14);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/findBetween?from=1992-12-31&to=1990-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"findBetween"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1992-12-31"
+						},
+						{
+							"key": "to",
+							"value": "1990-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findBetween from = to = 1992-02-21",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Количество сотрудников findBetween from < to (from = 1990-01-01, to = 1992-12-31)\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length, 'Количество сотрудников findBetween = 1').to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Тест employee 'id' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('id');\r",
+							"    pm.expect(jsonData[0].id, '\"id\" =98').to.eql(98);\r",
+							"});\r",
+							"pm.test(\"Тест employee 'firstName' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('firstName');\r",
+							"    pm.expect(jsonData[0].firstName, '\"firstName\" = Яна').to.eql('Яна');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'lastName' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('lastName');\r",
+							"    pm.expect(jsonData[0].lastName, '\"lastName\" = Николаевна').to.eql('Николаевна');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'birthday' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('birthday');\r",
+							"    pm.expect(jsonData[0].birthday, '\"birthday\" = 1992-02-21').to.eql('1992-02-21');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'department' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('department');\r",
+							"    pm.expect(jsonData[0].department, '\"department\" = Отдел закупок').to.eql('Отдел закупок');\r",
+							"});\r",
+							"pm.test(\"Тест employee 'salary' \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('salary');\r",
+							"    pm.expect(jsonData[0].salary, '\"salary\" = 68000').to.eql(68000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/findBetween?from=1992-02-21&to=1992-02-21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"findBetween"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1992-02-21"
+						},
+						{
+							"key": "to",
+							"value": "1992-02-21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findBetween from = to = 2050-12-06 (0 employee)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код 200\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Есть тело ответа\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Количество сотрудников findBetween  from = to = 2050-12-06)\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length, 'Количество сотрудников findBetween = 0').to.eql(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nauka/employee/findBetween?from=2050-12-06&to=2050-12-06",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nauka",
+						"employee",
+						"findBetween"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2050-12-06"
+						},
+						{
+							"key": "to",
+							"value": "2050-12-06"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
